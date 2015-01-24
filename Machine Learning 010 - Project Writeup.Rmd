@@ -31,13 +31,12 @@ training   = training[,completeCasesByVariables]
 validation = validation[,completeCasesByVariables]
 ```
 
-
 ```{r echo=F}
 trainingSize   = dim(training)
 validationSize = dim(validation)
 ```
 
-The training set now contains `r trainingSize[1]` and variables `r trainingSize[2]` variables, but some of these contain no variation or are covarient with other variables, and thus should be removed. Note that we are also removing the variables from the validation set.
+The training set now contains `r trainingSize[1]` and `r trainingSize[2]` variables, but some of these contain no variation or are covarient with other variables, and thus should be removed. Note that we are also removing the variables from the validation set.
 
 ```{r}
 nzvVariables = nearZeroVar(training, uniqueCut=10)
@@ -68,7 +67,7 @@ trainingSet = training[inTrain,]
 testingSet  = training[-inTrain,]
 ```
 
-Next will train the model using all remaining variables using the _randomForest_ algorithm with the default options, and build a prediction based on our testing dataset.
+Next we will train the model using all remaining variables using the _randomForest_ algorithm with the default options, and build a prediction based on our testing dataset.
 
 ```{r}
 trainingSet$classe = as.factor(trainingSet$classe)
@@ -98,7 +97,7 @@ In this analysis, we showed that it is possible to predict with the outcome of a
 
 ## Appendix
 
-Plot of must important predictors and their cross-validation importance.
+Plot of must important predictors and their cross-validation importance using the Gini Scale.
 ```{r fig.align='center'}
 varImpPlot(fittedModel, n.var = 10)
 ```
