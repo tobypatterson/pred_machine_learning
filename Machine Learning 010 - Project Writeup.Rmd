@@ -94,6 +94,8 @@ rownames(variableImportance)[order(variableImportance, decreasing = T)][1:15]
 ```
 ## Conclusion
 
+In this analysis, we showed that it is possible to predict with the outcome of a testing dataset `r modelAccuracy$overall[1]`% accuracy using simple machine learning techniques and the _randomForest_ algorithm. The total execution time of this script was under one minute using `r trainingSize[1]` observations and `r trainingSize[2]` variables, demonstrating the usefulness of this easily applied method.
+
 ## Appendix
 
 Plot of must important predictors and their cross-validation importance.
