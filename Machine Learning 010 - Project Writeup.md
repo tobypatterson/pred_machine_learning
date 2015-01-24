@@ -72,12 +72,12 @@ modelAccuracy$overall
 
 ```
 ##       Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull 
-##      0.9902121      0.9876169      0.9870433      0.9927746      0.2860930 
+##      0.9885808      0.9855527      0.9851965      0.9913628      0.2860930 
 ## AccuracyPValue  McnemarPValue 
 ##      0.0000000            NaN
 ```
 
-Our model provides a 0.9902121% accuracy, which is pleasantly sufficient, and predicts most variables very well.
+Our model provides a 0.9885808% accuracy, which is pleasantly sufficient, and predicts most variables very well.
 
 
 ```r
@@ -89,10 +89,10 @@ table(predictResult, testingSet$classe)
 ##              
 ## predictResult    A    B    C    D    E
 ##             A 1392   11    0    0    0
-##             B    3  932    9    0    0
-##             C    0    6  841   11    0
-##             D    0    0    5  791    1
-##             E    0    0    0    2  900
+##             B    3  933   10    0    0
+##             C    0    5  838   12    0
+##             D    0    0    7  786    2
+##             E    0    0    0    6  899
 ```
 
 Let's have a look at our 5 most important predictors.
@@ -103,15 +103,15 @@ rownames(variableImportance)[order(variableImportance, decreasing = T)][1:15]
 ```
 
 ```
-##  [1] "magnet_dumbbell_z"    "pitch_forearm"        "magnet_belt_z"       
+##  [1] "magnet_dumbbell_z"    "magnet_belt_z"        "pitch_forearm"       
 ##  [4] "roll_forearm"         "roll_dumbbell"        "gyros_belt_z"        
-##  [7] "roll_arm"             "total_accel_dumbbell" "gyros_dumbbell_y"    
-## [10] "yaw_dumbbell"         "accel_forearm_x"      "accel_forearm_z"     
-## [13] "magnet_forearm_z"     "yaw_arm"              "magnet_arm_x"
+##  [7] "roll_arm"             "total_accel_dumbbell" "yaw_dumbbell"        
+## [10] "gyros_dumbbell_y"     "magnet_forearm_z"     "accel_forearm_x"     
+## [13] "magnet_arm_x"         "magnet_belt_x"        "yaw_arm"
 ```
 ## Conclusion
 
-In this analysis, we showed that it is possible to predict with the outcome of a testing dataset 0.9902121% accuracy using simple machine learning techniques and the _randomForest_ algorithm. The total execution time of this script was under one minute using 19622 observations and 31 variables, demonstrating the usefulness of this easily applied method.
+In this analysis, we showed that it is possible to predict with the outcome of a testing dataset 0.9885808% accuracy using simple machine learning techniques and the _randomForest_ algorithm. The total execution time of this script was under one minute using 19622 observations and 31 variables, demonstrating the usefulness of this easily applied method.
 
 ## Appendix
 
@@ -157,34 +157,36 @@ modelAccuracy
 ##           Reference
 ## Prediction    A    B    C    D    E
 ##          A 1392    3    0    0    0
-##          B   11  932    6    0    0
-##          C    0    9  841    5    0
-##          D    0    0   11  791    2
-##          E    0    0    0    1  900
+##          B   11  933    5    0    0
+##          C    0   10  838    7    0
+##          D    0    0   12  786    6
+##          E    0    0    0    2  899
 ## 
 ## Overall Statistics
-##                                          
-##                Accuracy : 0.9902         
-##                  95% CI : (0.987, 0.9928)
-##     No Information Rate : 0.2861         
-##     P-Value [Acc > NIR] : < 2.2e-16      
-##                                          
-##                   Kappa : 0.9876         
-##  Mcnemar's Test P-Value : NA             
+##                                           
+##                Accuracy : 0.9886          
+##                  95% CI : (0.9852, 0.9914)
+##     No Information Rate : 0.2861          
+##     P-Value [Acc > NIR] : < 2.2e-16       
+##                                           
+##                   Kappa : 0.9856          
+##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9922   0.9873   0.9802   0.9925   0.9978
-## Specificity            0.9991   0.9957   0.9965   0.9968   0.9998
-## Pos Pred Value         0.9978   0.9821   0.9836   0.9838   0.9989
-## Neg Pred Value         0.9969   0.9970   0.9958   0.9985   0.9995
-## Prevalence             0.2861   0.1925   0.1750   0.1625   0.1839
-## Detection Rate         0.2838   0.1900   0.1715   0.1613   0.1835
+## Sensitivity            0.9922   0.9863   0.9801   0.9887   0.9934
+## Specificity            0.9991   0.9960   0.9958   0.9956   0.9995
+## Pos Pred Value         0.9978   0.9831   0.9801   0.9776   0.9978
+## Neg Pred Value         0.9969   0.9967   0.9958   0.9978   0.9985
+## Prevalence             0.2861   0.1929   0.1743   0.1621   0.1845
+## Detection Rate         0.2838   0.1903   0.1709   0.1603   0.1833
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1639   0.1837
-## Balanced Accuracy      0.9957   0.9915   0.9884   0.9947   0.9988
+## Balanced Accuracy      0.9957   0.9911   0.9880   0.9921   0.9964
 ```
 
-## Reference
+## Citations
 
-Dataset and citations: http://groupware.les.inf.puc-rio.br/har
+WLE Dataset: http://groupware.les.inf.puc-rio.br/har
+
+Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
