@@ -10,7 +10,7 @@ output:
 
 ## Executive Summary
 
-In this analysis we will try to predict 20 observations based on data from personal fitness devices.
+In this analysis we will try to predict 20 observations based on data from personal fitness devices. Using the _randomForest_ algorithm on a subset of important predictors (31 of total), we can predict the outcome on a training dataset with about 99% accuracy.
 
 ## Exploratory Analysis
 
@@ -73,12 +73,12 @@ modelAccuracy$overall
 
 ```
 ##       Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull 
-##      0.9873573      0.9840039      0.9838215      0.9902935      0.2867047 
+##      0.9902121      0.9876162      0.9870433      0.9927746      0.2862969 
 ## AccuracyPValue  McnemarPValue 
 ##      0.0000000            NaN
 ```
 
-Our model provides a 0.9873573 accuracy, which is pleasently sufficient, and predicts most variables very well.
+Our model provides a 0.9902121% accuracy, which is pleasantly sufficient, and predicts most variables very well.
 
 
 ```r
@@ -89,11 +89,11 @@ table(predictResult, testingSet$classe)
 ```
 ##              
 ## predictResult    A    B    C    D    E
-##             A 1395   11    0    0    0
-##             B    0  930   11    0    0
-##             C    0    6  839   21    1
-##             D    0    0    5  782    4
-##             E    0    2    0    1  896
+##             A 1395    9    0    0    0
+##             B    0  934    9    0    0
+##             C    0    4  843   18    0
+##             D    0    0    2  784    1
+##             E    0    2    1    2  900
 ```
 
 Let's have a look at our 5 most important predictors.
@@ -105,10 +105,10 @@ rownames(variableImportance)[order(variableImportance, decreasing = T)][1:15]
 
 ```
 ##  [1] "magnet_dumbbell_z"    "pitch_forearm"        "magnet_belt_z"       
-##  [4] "roll_forearm"         "roll_dumbbell"        "gyros_belt_z"        
-##  [7] "roll_arm"             "gyros_dumbbell_y"     "yaw_dumbbell"        
-## [10] "total_accel_dumbbell" "magnet_forearm_z"     "magnet_arm_x"        
-## [13] "accel_forearm_z"      "accel_forearm_x"      "pitch_dumbbell"
+##  [4] "roll_dumbbell"        "roll_forearm"         "gyros_belt_z"        
+##  [7] "roll_arm"             "total_accel_dumbbell" "gyros_dumbbell_y"    
+## [10] "yaw_dumbbell"         "magnet_forearm_z"     "magnet_belt_x"       
+## [13] "accel_forearm_x"      "magnet_arm_x"         "accel_forearm_z"
 ```
 ## Conclusion
 
@@ -122,7 +122,7 @@ varImpPlot(fittedModel, n.var = 10)
 
 <img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
-Plot the error rate over various outcomes and interations of the tree.
+Plot the error rate over various outcomes and iterations of the tree.
 
 ```r
 plot(fittedModel, log="y")
@@ -156,32 +156,32 @@ modelAccuracy
 ##           Reference
 ## Prediction    A    B    C    D    E
 ##          A 1395    0    0    0    0
-##          B   11  930    6    0    2
-##          C    0   11  839    5    0
-##          D    0    0   21  782    1
-##          E    0    0    1    4  896
+##          B    9  934    4    0    2
+##          C    0    9  843    2    1
+##          D    0    0   18  784    2
+##          E    0    0    0    1  900
 ## 
 ## Overall Statistics
-##                                           
-##                Accuracy : 0.9874          
-##                  95% CI : (0.9838, 0.9903)
-##     No Information Rate : 0.2867          
-##     P-Value [Acc > NIR] : < 2.2e-16       
-##                                           
-##                   Kappa : 0.984           
-##  Mcnemar's Test P-Value : NA              
+##                                          
+##                Accuracy : 0.9902         
+##                  95% CI : (0.987, 0.9928)
+##     No Information Rate : 0.2863         
+##     P-Value [Acc > NIR] : < 2.2e-16      
+##                                          
+##                   Kappa : 0.9876         
+##  Mcnemar's Test P-Value : NA             
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9922   0.9883   0.9677   0.9886   0.9967
-## Specificity            1.0000   0.9952   0.9960   0.9947   0.9988
-## Pos Pred Value         1.0000   0.9800   0.9813   0.9726   0.9945
-## Neg Pred Value         0.9969   0.9972   0.9931   0.9978   0.9993
-## Prevalence             0.2867   0.1919   0.1768   0.1613   0.1833
-## Detection Rate         0.2845   0.1896   0.1711   0.1595   0.1827
+## Sensitivity            0.9936   0.9905   0.9746   0.9962   0.9945
+## Specificity            1.0000   0.9962   0.9970   0.9951   0.9997
+## Pos Pred Value         1.0000   0.9842   0.9860   0.9751   0.9989
+## Neg Pred Value         0.9974   0.9977   0.9946   0.9993   0.9988
+## Prevalence             0.2863   0.1923   0.1764   0.1605   0.1845
+## Detection Rate         0.2845   0.1905   0.1719   0.1599   0.1835
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1639   0.1837
-## Balanced Accuracy      0.9961   0.9918   0.9819   0.9916   0.9977
+## Balanced Accuracy      0.9968   0.9933   0.9858   0.9957   0.9971
 ```
 
 ## Reference

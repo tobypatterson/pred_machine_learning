@@ -16,7 +16,7 @@ library(rattle)
 
 ## Executive Summary
 
-In this analysis we will try to predict 20 observations based on data from personal fitness devices.
+In this analysis we will try to predict 20 observations based on data from personal fitness devices. Using the _randomForest_ algorithm on a subset of important predictors (31 of total), we can predict the outcome on a training dataset with about 99% accuracy.
 
 ## Exploratory Analysis
 
@@ -79,7 +79,7 @@ modelAccuracy = confusionMatrix(testingSet[,resultColumn], predictResult)
 modelAccuracy$overall
 ```
 
-Our model provides a `r modelAccuracy$overall[1]` accuracy, which is pleasently sufficient, and predicts most variables very well.
+Our model provides a `r modelAccuracy$overall[1]`% accuracy, which is pleasantly sufficient, and predicts most variables very well.
 
 ```{r}
 
@@ -101,7 +101,7 @@ Plot of must important predictors and their cross-validation importance.
 varImpPlot(fittedModel, n.var = 10)
 ```
 
-Plot the error rate over various outcomes and interations of the tree.
+Plot the error rate over various outcomes and iterations of the tree.
 ```{r fig.align='center'}
 plot(fittedModel, log="y")
 legend("topright", colnames(fittedModel$err.rate),col=1:5,fill=1:5)
