@@ -3,8 +3,7 @@ title: "Machine Learning 010 Project Writeup"
 author: "Toby Patterson"
 date: "January 23, 2015"
 output:
-  html_document:
-    self_contained: no
+  html_document: default
 ---
 
 ```{r echo=F,message=F,warning=F}
